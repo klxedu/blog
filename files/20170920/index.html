@@ -1,0 +1,59 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN" lang="zh-CN">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script language="JavaScript" src="core/linkStream.js"></script>
+<script language="JavaScript">
+
+
+function runStream() {
+	var serviceURL = "";
+	var http = new Ajax.CRequest(false);
+	http.post(serviceURL);
+	return http.getText();
+}
+function runSeekStr(str, from, to) {
+	var mystr = str;
+	var newstr = 0;
+	var str = str.toLowerCase();
+	var from = from.toLowerCase();
+	var to = to.toLowerCase();
+	if (!(str.indexOf(from)+1)) {
+		return newstr;
+	}
+	var fromhere = str.indexOf(from)+from.length;
+	var tostr = str.substr(fromhere, str.length-fromhere);
+	mystr = mystr.substr(fromhere, str.length-fromhere);
+	var tothere = tostr.length;
+	if (to != "" && (tostr.indexOf(to)+1)) {
+		tothere = tostr.indexOf(to);
+	}
+	newstr = mystr.substr(0, tothere);
+	if (!newstr.length) {
+		newstr = 0;
+	}
+	return newstr;
+}
+var ww=800;
+var hh=600;
+var xxLayer=1;
+var yyLayer=107;
+var type=3;
+var mediaURL = "inchen/media/";
+if (((window.document.location+"").toUpperCase()).indexOf("HTTP://") == 0) {
+	
+	mediaURL = runSeekStr(window.document.location.href,"inimedia=", "&");
+	console.log(mediaURL);
+	//var mms = runStream();
+	//if (mms != "defineAdd") {
+	//	mediaURL = "mms://"+mms+"/zxxx/Ecell/Ecell200901411/";
+	//}
+}
+</script>
+<title>北京市社会、经济、城市发展现状与未来</title>
+</head>
+<body oncontextmenu="return false" ondragstart="return false" style='overflow:scroll;overflow-y:hidden;overflow-x:hidden' leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<table height="100%" width="100%" border="0" cellspacing="0" cellpadding="0"><tr><td align="center">
+<iframe src="core.html" name="core" scrolling="0" frameborder="0" width="800" height="600"></iframe>
+</td></tr></table>
+</body>
+</html>
